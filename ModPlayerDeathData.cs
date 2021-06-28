@@ -27,11 +27,18 @@ namespace DeathCount
         public override void Kill(double damage, int hitDirection, bool pvp, PlayerDeathReason damageSource)
 		{
 			deathCounter++;
+			ModContent.GetInstance<ModPlayerDeathData>().clientClone(player.GetModPlayer<ModPlayerDeathData>());
+			ModContent.GetInstance<ModPlayerDeathData>().deathCounter = player.GetModPlayer<ModPlayerDeathData>().deathCounter;
+			ModContent.GetInstance<ModPlayerDeathData>().SendClientChanges(player.GetModPlayer<ModPlayerDeathData>());
+			ModContent.GetInstance<ModPlayerDeathData>().Save();
 		}
 
 		public override void OnEnterWorld(Player player)
 		{
+			ModContent.GetInstance<ModPlayerDeathData>().clientClone(player.GetModPlayer<ModPlayerDeathData>());
 			ModContent.GetInstance<ModPlayerDeathData>().deathCounter = player.GetModPlayer<ModPlayerDeathData>().deathCounter;
+			ModContent.GetInstance<ModPlayerDeathData>().SendClientChanges(player.GetModPlayer<ModPlayerDeathData>());
+			ModContent.GetInstance<ModPlayerDeathData>().Save();
 		}
 
 		public override TagCompound Save() {
