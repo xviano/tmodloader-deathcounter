@@ -47,7 +47,7 @@ namespace DeathCount
 
         public override void clientClone(ModPlayer clientClone) {
 			ModPlayerDeathData clone = clientClone as ModPlayerDeathData;
-			deathCounter = clone.deathCounter;
+			clone.deathCounter = deathCounter;
 		}
 		
 		public override void SyncPlayer(int toWho, int fromWho, bool newPlayer) {
