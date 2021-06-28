@@ -2,7 +2,6 @@
 DeathCounter, Terraria Mod - tModLoader
 
 Death Counter - remember how many times you died?
-
 Enter the command in the in-game chat.
 
 ```
