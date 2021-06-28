@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31321.278
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DeathCount", "DeathCount.csproj", "{8B40E78E-DA92-4493-B884-73048ABEA99E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8B40E78E-DA92-4493-B884-73048ABEA99E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B40E78E-DA92-4493-B884-73048ABEA99E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B40E78E-DA92-4493-B884-73048ABEA99E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B40E78E-DA92-4493-B884-73048ABEA99E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {53DB6D2C-FACE-4642-AE3D-DA27E8ED8DBF}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,3 @@
+displayName = Death Counter
+author = Xin
+version = 0.1
