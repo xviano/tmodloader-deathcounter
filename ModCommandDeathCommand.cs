@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework;
+using System;
 using Terraria;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 
@@ -8,7 +10,7 @@ namespace DeathCount
 	public class ModCommandDeathCommand : ModCommand
 	{
 		public override CommandType Type
-			=> CommandType.Chat;
+			=> CommandType.World;
 
 		public override string Command
 			=> "deaths";
@@ -41,7 +43,7 @@ namespace DeathCount
 					{
 						ModPlayerDeathData data = Main.player[player].GetModPlayer<ModPlayerDeathData>();
 						caller.Reply(args[0] + " has died " + data.deathCounter + " times!");
-						break;
+						return;
 					}
 				}
 

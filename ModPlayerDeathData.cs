@@ -21,25 +21,31 @@ namespace DeathCount
 		//{
 		//    deathCounter++;
 		//}
-		public ModPlayerDeathData() { 
+		public ModPlayerDeathData() {
 		}
 
         public override void Kill(double damage, int hitDirection, bool pvp, PlayerDeathReason damageSource)
 		{
 			deathCounter++;
-			ModContent.GetInstance<ModPlayerDeathData>().clientClone(player.GetModPlayer<ModPlayerDeathData>());
-			ModContent.GetInstance<ModPlayerDeathData>().deathCounter = player.GetModPlayer<ModPlayerDeathData>().deathCounter;
-			ModContent.GetInstance<ModPlayerDeathData>().SendClientChanges(player.GetModPlayer<ModPlayerDeathData>());
-			ModContent.GetInstance<ModPlayerDeathData>().Save();
+			//ModContent.GetInstance<ModPlayerDeathData>().Save();
+			//ModContent.GetInstance<ModPlayerDeathData>().SendClientChanges(player.GetModPlayer<ModPlayerDeathData>());
+			//ModContent.GetInstance<ModPlayerDeathData>().clientClone(player.GetModPlayer<ModPlayerDeathData>());
 		}
 
-		public override void OnEnterWorld(Player player)
-		{
-			ModContent.GetInstance<ModPlayerDeathData>().clientClone(player.GetModPlayer<ModPlayerDeathData>());
-			ModContent.GetInstance<ModPlayerDeathData>().deathCounter = player.GetModPlayer<ModPlayerDeathData>().deathCounter;
-			ModContent.GetInstance<ModPlayerDeathData>().SendClientChanges(player.GetModPlayer<ModPlayerDeathData>());
-			ModContent.GetInstance<ModPlayerDeathData>().Save();
-		}
+		//public override void OnEnterWorld(Player player)
+		//{
+		//	deathCounter = player.GetModPlayer<ModPlayerDeathData>().deathCounter;
+
+		//	//for (int i = 0; i < Main.ActivePlayersCount; i++)
+		//	//{
+		//	//	ModContent.GetInstance<ModPlayerDeathData>().SyncPlayer(Main.player[i].index,i,true);
+		//	//}
+		//	//ModContent.GetInstance<ModPlayerDeathData>().deathCounter = player.GetModPlayer<ModPlayerDeathData>().deathCounter;
+		//	//ModContent.GetInstance<ModPlayerDeathData>().SendClientChanges(player.GetModPlayer<ModPlayerDeathData>());
+		//	ModContent.GetInstance<ModPlayerDeathData>().Save();
+		//	//ModContent.GetInstance<ModPlayerDeathData>().clientClone(player.GetModPlayer<ModPlayerDeathData>());
+			
+		//}
 
 		public override TagCompound Save() {
 			return new TagCompound {
@@ -57,7 +63,9 @@ namespace DeathCount
 		}
 		
 		public override void SyncPlayer(int toWho, int fromWho, bool newPlayer) {
+
 			ModPacket packet = mod.GetPacket();
+			packet.Write((byte)DeathCountModMessageType.SyncPlayerDeath);
 			packet.Write((byte)player.whoAmI);
 			packet.Write(deathCounter); 
 			packet.Send(toWho, fromWho);
@@ -67,7 +75,9 @@ namespace DeathCount
 			ModPlayerDeathData clone = clientClone as ModPlayerDeathData;
 			if (clone.deathCounter != deathCounter)
 			{
-				ModPacket packet = mod.GetPacket();
+				var packet = mod.GetPacket();
+
+				packet.Write((byte)DeathCountModMessageType.DeathCountChanged);
 				packet.Write((byte)player.whoAmI);
 				packet.Write(deathCounter);
 				packet.Send();
