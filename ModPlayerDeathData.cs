@@ -31,8 +31,7 @@ namespace DeathCount
 
 		public override void OnEnterWorld(Player player)
 		{
-			// We can refresh UI using OnEnterWorld. OnEnterWorld happens after Load, so nonStopParty is the correct value.
-			deathCounter = ModContent.GetInstance<ModPlayerDeathData>().deathCounter;
+			ModContent.GetInstance<ModPlayerDeathData>().deathCounter = player.GetModPlayer<ModPlayerDeathData>().deathCounter;
 		}
 
 		public override TagCompound Save() {
@@ -57,12 +56,15 @@ namespace DeathCount
 			packet.Send(toWho, fromWho);
 		}
 
-		public override void SendClientChanges(ModPlayer clientPlayer) {
-			ModPlayerDeathData clone = clientPlayer as ModPlayerDeathData;
-			ModPacket packet = mod.GetPacket();
-			packet.Write((byte)player.whoAmI);
-			packet.Write(deathCounter);
-			packet.Send();
+		public override void SendClientChanges(ModPlayer clientClone) {
+			ModPlayerDeathData clone = clientClone as ModPlayerDeathData;
+			if (clone.deathCounter != deathCounter)
+			{
+				ModPacket packet = mod.GetPacket();
+				packet.Write((byte)player.whoAmI);
+				packet.Write(deathCounter);
+				packet.Send();
+			}
 		}
     }
 }
