@@ -17,36 +17,15 @@ namespace DeathCount
 	public class  ModPlayerDeathData : ModPlayer
 	{
 		public int deathCounter = 0;
-		//public override void OnRespawn(Player player)
-		//{
-		//    deathCounter++;
-		//}
+
 		public ModPlayerDeathData() {
 		}
 
         public override void Kill(double damage, int hitDirection, bool pvp, PlayerDeathReason damageSource)
 		{
 			deathCounter++;
-			//ModContent.GetInstance<ModPlayerDeathData>().Save();
-			//ModContent.GetInstance<ModPlayerDeathData>().SendClientChanges(player.GetModPlayer<ModPlayerDeathData>());
-			//ModContent.GetInstance<ModPlayerDeathData>().clientClone(player.GetModPlayer<ModPlayerDeathData>());
-		}
-
-		//public override void OnEnterWorld(Player player)
-		//{
-		//	deathCounter = player.GetModPlayer<ModPlayerDeathData>().deathCounter;
-
-		//	//for (int i = 0; i < Main.ActivePlayersCount; i++)
-		//	//{
-		//	//	ModContent.GetInstance<ModPlayerDeathData>().SyncPlayer(Main.player[i].index,i,true);
-		//	//}
-		//	//ModContent.GetInstance<ModPlayerDeathData>().deathCounter = player.GetModPlayer<ModPlayerDeathData>().deathCounter;
-		//	//ModContent.GetInstance<ModPlayerDeathData>().SendClientChanges(player.GetModPlayer<ModPlayerDeathData>());
-		//	ModContent.GetInstance<ModPlayerDeathData>().Save();
-		//	//ModContent.GetInstance<ModPlayerDeathData>().clientClone(player.GetModPlayer<ModPlayerDeathData>());
-			
-		//}
-
+			}
+		
 		public override TagCompound Save() {
 			return new TagCompound {
 				{"died", deathCounter}
