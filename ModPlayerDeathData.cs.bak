@@ -26,13 +26,13 @@ namespace DeathCount
 			deathCounter++;
 			}
 		
-		public override void SaveData(TagCompound tag)/* tModPorter Suggestion: Edit tag parameter instead of returning new TagCompound */ {
-			new TagCompound {
+		public override TagCompound Save() {
+			return new TagCompound {
 				{"died", deathCounter}
 			};
         }
 
-        public override void LoadData(TagCompound tag) {
+        public override void Load(TagCompound tag) {
 			deathCounter = tag.GetInt("died");
 		}
 
@@ -43,9 +43,9 @@ namespace DeathCount
 		
 		public override void SyncPlayer(int toWho, int fromWho, bool newPlayer) {
 
-			ModPacket packet = Mod.GetPacket();
+			ModPacket packet = mod.GetPacket();
 			packet.Write((byte)DeathCountModMessageType.SyncPlayerDeath);
-			packet.Write((byte)Player.whoAmI);
+			packet.Write((byte)player.whoAmI);
 			packet.Write(deathCounter); 
 			packet.Send(toWho, fromWho);
 		}
@@ -54,10 +54,10 @@ namespace DeathCount
 			ModPlayerDeathData clone = clientClone as ModPlayerDeathData;
 			if (clone.deathCounter != deathCounter)
 			{
-				var packet = Mod.GetPacket();
+				var packet = mod.GetPacket();
 
 				packet.Write((byte)DeathCountModMessageType.DeathCountChanged);
-				packet.Write((byte)Player.whoAmI);
+				packet.Write((byte)player.whoAmI);
 				packet.Write(deathCounter);
 				packet.Send();
 			}
