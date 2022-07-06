@@ -37,7 +37,7 @@ namespace DeathCount
 			if (args.Length == 1)
 			{
 				//found player with name
-				for (player = 0; player < Main.ActivePlayersCount; player++)
+				for (player = 0; player < Main.CurrentFrameFlags.ActivePlayersCount; player++)
 				{
 					if (Main.player[player].active && Main.player[player].name == args[0])
 					{
@@ -48,14 +48,14 @@ namespace DeathCount
 				}
 
 				//can't find player
-				if (player == Main.ActivePlayersCount)
+				if (player == Main.CurrentFrameFlags.ActivePlayersCount)
 				{
 					throw new UsageException("Could not find player: " + args[0]);
 				}
 			}
 
 			//no command argument 
-			for (int i = 0; i < Main.ActivePlayersCount; i++)
+			for (int i = 0; i < Main.CurrentFrameFlags.ActivePlayersCount; i++)
 			{
 				ModPlayerDeathData data = Main.player[i].GetModPlayer<ModPlayerDeathData>();
 				caller.Reply(Main.player[i].name + " has died " + data.deathCounter + " times!");
