@@ -24,12 +24,13 @@ namespace DeathCount
         public override void Kill(double damage, int hitDirection, bool pvp, PlayerDeathReason damageSource)
 		{
 			deathCounter++;
+			
 			}
 		
 		public override void SaveData(TagCompound tag)/* tModPorter Suggestion: Edit tag parameter instead of returning new TagCompound */ {
-			new TagCompound {
-				{"died", deathCounter}
-			};
+			tag.Add("died", deathCounter);
+			
+			
         }
 
         public override void LoadData(TagCompound tag) {
