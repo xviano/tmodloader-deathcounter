@@ -26,8 +26,10 @@ namespace DeathCount
 			deathCounter++;
 			}
 		
-		public override void SaveData(TagCompound tag)/* tModPorter Suggestion: Edit tag parameter instead of returning new TagCompound */ {
-			tag.Add("died", deathCounter);
+		public override TagCompound SaveData() {
+			return new TagCompound {
+				{"died", deathCounter}
+			};
         }
 
         public override void LoadData(TagCompound tag) {
