@@ -1,4 +1,4 @@
 displayName = Death Counter
 author = Xin
-version = 0.1.09
+version = 0.1.10
 homepage = https://github.com/xviano/tmodloader-deathcounter
