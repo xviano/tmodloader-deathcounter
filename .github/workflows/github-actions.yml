@@ -1,5 +1,4 @@
 name: Push on Master jobs
-
 on:
   push:
     branches: [ master ]
@@ -10,7 +9,6 @@ jobs:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v2
-       
       # Mod Browser integration
       - uses: JavidPack/tModLoaderPublishIntegration@v0.11.8.8
         with:
