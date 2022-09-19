@@ -14,4 +14,4 @@ jobs:
         with:
           STEAMID64: ${{secrets.STEAMID64}}
           MODBROWSERPASSPHRASE: ${{secrets.MODBROWSERPASSPHRASE}}
-          MODNAME: DeathCounter
+          MODNAME: tmodloader-deathcounter
